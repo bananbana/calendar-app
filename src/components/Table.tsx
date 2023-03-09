@@ -43,32 +43,32 @@ export const Table = ({ calendarDate, onModalOpen, notes }: TableProps) => {
   );
 
   return (
-    <div className="container max-w-fit h-auto p-4">
-      <table className="table-fixed h-max w-full border border-collapse border-[#CEEDC7]">
-        <thead className="border border-[#CEEDC7] border-solid">
+    <div className="grid grid-cols-7 content-center m-4">
+      <table className="table-fixed border border-collapse border-[#CEEDC7]">
+        <thead className="border-2 border-[#CEEDC7] border-solid">
           <tr className="border-[#CEEDC7]">
             {daysInAWeek.map((day) => (
-              <th className="bg-[#FFF6BD] border-solid border border-[#CEEDC7]">
+              <th className="bg-[#FFF6BD] border-solid border-2 border-[#CEEDC7]">
                 {day}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {calendarDays.map((rowDays) => (
-            <tr className="border border-solid border-[#CEEDC7] h-32 relative text-right">
+            <tr className="border-2 border-solid border-[#CEEDC7]">
               {rowDays.map((day) => (
                 <td
                   onClick={() => onModalOpen(day)}
-                  className="pb-12 pl-12 border-solid border bg-[#FFD4B2] bg-opacity-80 shadow-xl border-[#CEEDC7]"
+                  className="border-solid border-2 bg-[#FFD4B2] bg-opacity-80 shadow-xl border-[#CEEDC7]"
                 >
-                  <div>
-                    <p className="p-2">{day.date()}</p>
-                    <ul className="flex items-start">
+                  <div className="">
+                    <p>{day.date()}</p>
+                    <ul className="">
                       {notes
                         .filter((note) => note.date.isSame(day, "day"))
                         .map((note) => (
-                          <li className="w-[70px] text-justify-right px-1 my-1 rounded-[5px] bg-[#86C8BC]">
+                          <li className="rounded-[5px] bg-[#86C8BC]">
                             {note.text}
                           </li>
                         ))}

@@ -19,10 +19,12 @@ function App() {
 
   const prevMonth = () => {
     setSelectedDate((selectedDate) => selectedDate.subtract(1, "month"));
+    console.log(selectedDate);
   };
 
   const nextMonth = () => {
     setSelectedDate((selectedDate) => selectedDate.add(1, "month"));
+    console.log(selectedDate);
   };
 
   const monthsInYear = [
@@ -74,23 +76,31 @@ function App() {
   };
 
   return (
-    <div className="bg-[#CEEDC7] h-full inline-block text-center">
-      <button onClick={prevMonth} className="relative right-24 top-12 m-3">
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
-      <button onClick={nextMonth} className="relative left-24 top-12 m-3">
-        <i className="fa-solid fa-chevron-right"></i>
-      </button>
-      <Select
-        options={monthsInYear}
-        selectedIndex={selectedDate.month()}
-        onSelect={monthChange}
-      />
-      <Select
-        options={yearsOptions}
-        selectedIndex={yearsOptions.indexOf(selectedDate.year().toString())}
-        onSelect={yearChange}
-      />
+    <div className="bg-[#CEEDC7] grid place-content-center grid-cols-7">
+      <div id="button-1" className="col-start-2 place-self-end align-middle">
+        <button onClick={prevMonth}>
+          <i className="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+      <div id="button-2" className="col-start-6 self-end">
+        <button onClick={nextMonth}>
+          <i className="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div id="select-month" className="col-span-3 col-start-3 row-start-1">
+        <Select
+          options={monthsInYear}
+          selectedIndex={selectedDate.month()}
+          onSelect={monthChange}
+        />
+      </div>
+      <div id="select-year" className="col-span-3 col-start-3">
+        <Select
+          options={yearsOptions}
+          selectedIndex={yearsOptions.indexOf(selectedDate.year().toString())}
+          onSelect={yearChange}
+        />
+      </div>
       <Table
         calendarDate={selectedDate}
         onModalOpen={openModal}
