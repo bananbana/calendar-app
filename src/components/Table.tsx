@@ -43,43 +43,41 @@ export const Table = ({ calendarDate, onModalOpen, notes }: TableProps) => {
   );
 
   return (
-    <div className="grid grid-cols-7 content-center m-4">
-      <table className="table-fixed border border-collapse border-[#CEEDC7]">
-        <thead className="border-2 border-[#CEEDC7] border-solid">
-          <tr className="border-[#CEEDC7]">
-            {daysInAWeek.map((day) => (
-              <th className="bg-[#FFF6BD] border-solid border-2 border-[#CEEDC7]">
-                {day}
-              </th>
+    <table className="border border-collapse border-[#CEEDC7] col-span-7 place-self-stretch">
+      <thead className="border-2 border-[#CEEDC7] border-solid">
+        <tr className="border-[#CEEDC7]">
+          {daysInAWeek.map((day) => (
+            <th className="bg-[#FFF6BD] border-solid border-2 border-[#CEEDC7]">
+              {day}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody className="">
+        {calendarDays.map((rowDays) => (
+          <tr className="border-2 border-solid border-[#CEEDC7]">
+            {rowDays.map((day) => (
+              <td
+                onClick={() => onModalOpen(day)}
+                className="border-solid border-2 bg-[#FFD4B2] bg-opacity-80 shadow-xl border-[#CEEDC7]"
+              >
+                <div className="">
+                  <p>{day.date()}</p>
+                  <ul className="">
+                    {notes
+                      .filter((note) => note.date.isSame(day, "day"))
+                      .map((note) => (
+                        <li className="rounded-[5px] bg-[#86C8BC]">
+                          {note.text}
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </td>
             ))}
           </tr>
-        </thead>
-        <tbody className="">
-          {calendarDays.map((rowDays) => (
-            <tr className="border-2 border-solid border-[#CEEDC7]">
-              {rowDays.map((day) => (
-                <td
-                  onClick={() => onModalOpen(day)}
-                  className="border-solid border-2 bg-[#FFD4B2] bg-opacity-80 shadow-xl border-[#CEEDC7]"
-                >
-                  <div className="">
-                    <p>{day.date()}</p>
-                    <ul className="">
-                      {notes
-                        .filter((note) => note.date.isSame(day, "day"))
-                        .map((note) => (
-                          <li className="rounded-[5px] bg-[#86C8BC]">
-                            {note.text}
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };

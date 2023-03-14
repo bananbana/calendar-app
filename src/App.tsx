@@ -76,36 +76,32 @@ function App() {
   };
 
   return (
-    <div className="bg-[#CEEDC7] grid place-content-center grid-cols-7">
-      <div id="button-1" className="col-start-2 place-self-end align-middle">
-        <button onClick={prevMonth}>
+    <div className="h-full flex justify-center items-center flex-col">
+      <div className="relative w-auto basis-1/4">
+        <button className="absolute top-[10px] -left-4" onClick={prevMonth}>
           <i className="fa-solid fa-chevron-left"></i>
         </button>
-      </div>
-      <div id="button-2" className="col-start-6 self-end">
-        <button onClick={nextMonth}>
-          <i className="fa-solid fa-chevron-right"></i>
-        </button>
-      </div>
-      <div id="select-month" className="col-span-3 col-start-3 row-start-1">
         <Select
           options={monthsInYear}
           selectedIndex={selectedDate.month()}
           onSelect={monthChange}
         />
-      </div>
-      <div id="select-year" className="col-span-3 col-start-3">
+        <button className="absolute top-[10px] -right-4" onClick={nextMonth}>
+          <i className="fa-solid fa-chevron-right"></i>
+        </button>
         <Select
           options={yearsOptions}
           selectedIndex={yearsOptions.indexOf(selectedDate.year().toString())}
           onSelect={yearChange}
         />
       </div>
-      <Table
-        calendarDate={selectedDate}
-        onModalOpen={openModal}
-        notes={notes}
-      />
+      <div className="justify-center basis-3/4">
+        <Table
+          calendarDate={selectedDate}
+          onModalOpen={openModal}
+          notes={notes}
+        />
+      </div>
       <Dialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

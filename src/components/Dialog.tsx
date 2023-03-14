@@ -83,8 +83,12 @@ export const Dialog = ({
                       type="text"
                       value={noteValue}
                     ></input>
-                    <button type="submit" onClick={addNote}>
-                      +
+                    <button
+                      type="submit"
+                      onClick={addNote}
+                      className="hover:bg-[#FFD4B2] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD4B2] focus-visible:ring-offset-2"
+                    >
+                      <i className="fa-regular fa-calendar-plus"></i>
                     </button>
                     <ul>
                       {notes?.map((note, i) => (
@@ -94,10 +98,10 @@ export const Dialog = ({
                             {note.date.toDate().toLocaleDateString()}
                           </li>
                           <button
-                            className="border bg-slate-400"
+                            className="hover:bg-[#FFD4B2] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD4B2] focus-visible:ring-offset-2"
                             onClick={() => deleteNote(note.key)}
                           >
-                            delete note
+                            <i className="fa-solid fa-trash-can"></i>
                           </button>
                         </div>
                       ))}
@@ -107,10 +111,10 @@ export const Dialog = ({
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md px-4 py-2 hover:bg-[#FFD4B2] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD4B2] focus-visible:ring-offset-2"
                       onClick={onClose}
                     >
-                      x
+                      <i className="fa-regular fa-rectangle-xmark"></i>
                     </button>
                   </div>
                 </HeadlessDialog.Panel>
