@@ -76,8 +76,8 @@ function App() {
   };
 
   return (
-    <div className="h-full flex justify-center items-center flex-col">
-      <div className="relative w-auto basis-1/4">
+    <div className="h-full flex flex-col">
+      <div className="relative self-center">
         <button className="absolute top-[10px] -left-4" onClick={prevMonth}>
           <i className="fa-solid fa-chevron-left"></i>
         </button>
@@ -95,7 +95,7 @@ function App() {
           onSelect={yearChange}
         />
       </div>
-      <div className="justify-center basis-3/4">
+      <div className="flex-1 p-5">
         <Table
           calendarDate={selectedDate}
           onModalOpen={openModal}

@@ -43,7 +43,7 @@ export const Table = ({ calendarDate, onModalOpen, notes }: TableProps) => {
   );
 
   return (
-    <table className="border border-collapse border-[#CEEDC7] col-span-7 place-self-stretch">
+    <table className="table-fixed border border-collapse border-[#CEEDC7] w-full h-full">
       <thead className="border-2 border-[#CEEDC7] border-solid">
         <tr className="border-[#CEEDC7]">
           {daysInAWeek.map((day) => (
@@ -61,8 +61,21 @@ export const Table = ({ calendarDate, onModalOpen, notes }: TableProps) => {
                 onClick={() => onModalOpen(day)}
                 className="border-solid border-2 bg-[#FFD4B2] bg-opacity-80 shadow-xl border-[#CEEDC7]"
               >
-                <div className="">
-                  <p>{day.date()}</p>
+                <div
+                  className={
+                    "h-full " +
+                    (day.month() === calendarDate.month()
+                      ? "bg-[#FFD4B2"
+                      : "bg-slate-300 bg-opacity-90")
+                  }
+                >
+                  <p
+                    className={
+                      day.day() === 0 || day.day() === 6 ? "text-red-700" : ""
+                    }
+                  >
+                    {day.date()}
+                  </p>
                   <ul className="">
                     {notes
                       .filter((note) => note.date.isSame(day, "day"))
